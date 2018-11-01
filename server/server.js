@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 
 const app = express();
-
+app.use(express.static('build'));
 app.use(bodyParser.json());
 
 let {
