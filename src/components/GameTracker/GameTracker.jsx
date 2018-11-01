@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Header from '../Header/Header';
 
 class GameTracker extends Component {
   constructor(){
@@ -9,6 +12,15 @@ class GameTracker extends Component {
       }
   }
 
+  async componentDidMount(){
+    console.log(this.props.user)
+    if(!this.props.user.coach_id){
+      this.props.history.push('/')
+    } else {
+
+    }
+  }
+
   handleClick(){
 
   }
@@ -16,6 +28,7 @@ class GameTracker extends Component {
   render() {
     return (
       <div className="GameTracker">
+        <Header />
         <h1>GameTracker</h1>
         <h2>DisplayOpponentandDate</h2>
         <ul>
@@ -27,4 +40,10 @@ class GameTracker extends Component {
   }
 }
 
-export default GameTracker;
+function mapStateToProps(state){
+  return {
+    user: state.user
+  }
+}
+
+export default connect ( mapStateToProps ) (withRouter ( GameTracker ));

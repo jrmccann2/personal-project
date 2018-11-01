@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Header from '../Header/Header';
 
 class NewGame extends Component {
   constructor(){
@@ -7,6 +10,15 @@ class NewGame extends Component {
     this.state = {
         opponentName: '',
         date: ''
+    }
+  }
+
+  async componentDidMount(){
+    console.log(this.props.user)
+    if(!this.props.user.coach_id){
+      this.props.history.push('/')
+    } else {
+
     }
   }
 
@@ -21,10 +33,17 @@ class NewGame extends Component {
   render() {
     return (
       <div className="NewGame">
+        <Header />
         New Game
       </div>
     );
   }
 }
 
-export default NewGame;
+function mapStateToProps(state){
+  return {
+    user: state.user
+  }
+}
+
+export default connect ( mapStateToProps ) (withRouter( NewGame ));
