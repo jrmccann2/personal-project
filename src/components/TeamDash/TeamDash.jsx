@@ -20,9 +20,13 @@ class TeamDash extends Component {
       teamFGA: 0,
       teamOReb: 0,
       teamDReb: 0,
-      teamTO: 0
+      teamTO: 0,
+      playername: '',
+      position: ''
 
     }
+    this.handleInput = this.handleInput.bind(this)
+    this.addPlayer = this.addPlayer.bind(this)
   }
 
   async componentDidMount(){
@@ -59,11 +63,29 @@ class TeamDash extends Component {
     }
   }
 
+  handleInput(event){
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  addPlayer(){
+    const {playername, position} = this.state;
+    this.name_input.value = '';
+    this.pos_input.value = '';
+    const {team_id} = this.props.team;
+    axios.post('/api/addPlayerLate', {playername, position, team_id})
+        .then( (updatedPlayers) => {
+          let {data} = updatedPlayers
+          this.setState({players: data})
+        })
+  }
+
   dropPlayer( player ){
+    // console.log(this.props.team.team_id)
     let {player_id} = player
     axios.delete(`/api/dropPlayer/${player_id}/${this.props.team.team_id}`)
         .then( (updatedPlayers) => {
-          this.setState({players: updatedPlayers})
+          let {data} = updatedPlayers
+          this.setState({players: data})
         })
   }
 
@@ -85,7 +107,7 @@ class TeamDash extends Component {
       )
     })
 
-    if(this.state.teamName === ''){
+    if(!this.state.players[0]){
       return (
         <div className='EmptyTeam'>
           <Header />
@@ -109,7 +131,19 @@ class TeamDash extends Component {
             <p>D. Rebounds: {this.state.teamDReb}</p>
             <p>Turnovers: {this.state.teamTO}</p>
           </section>
-          <NewPlayer team_id={this.props.team.team_id}/>
+          <div className='NewPlayer'>
+                <form className='player-form'>
+                    <p>
+                    Name:
+                    <input type="text" placeholder="Player Name" name='playername' onChange={this.handleInput} ref={(ref) => this.name_input = ref}/>
+                    </p>
+                    <p>
+                    Position:
+                    <input type="text" placeholder="Position" name='position' onChange={this.handleInput} ref={(ref) => this.pos_input = ref} />
+                    </p>
+                </form>
+                <button onClick={this.addPlayer}>Add Player</button>
+            </div>
           <div className='roster'>
             {players}
           </div>

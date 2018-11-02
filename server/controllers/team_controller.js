@@ -33,7 +33,7 @@ module.exports = {
 
         dbInstance.get_team_stats([team_id])
             .then( teamStats => {
-                console.log(teamStats)
+                // console.log(teamStats)
                 res.status(200).send( teamStats )
             })
             .catch( err => {
@@ -81,7 +81,7 @@ module.exports = {
 
         dbInstance.get_player([player_id])
             .then( player => {
-                console.log(player)
+                // console.log(player)
                 res.status(200).send( player )
             })
             .catch( err => {
@@ -102,13 +102,33 @@ module.exports = {
             });
     },
 
+    addPlayerLate: async (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const {playername, position, team_id} = req.body
+
+        await dbInstance.add_player([ playername, position, team_id ])
+        await dbInstance.get_team([ team_id ])
+            .then( (updatedPlayers) => {
+                console.log(updatedPlayers)
+                res.status(200).send(updatedPlayers)
+            })
+            .catch( err => {
+                res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+                console.log(err)
+            });
+    },
+
     dropPlayer: async (req, res, next) => {
         const dbInstance = req.app.get('db');
-        const {player_id, team_id} = req.param;
+        const {player_id, team_id} = req.params;
+        console.log(player_id, team_id)
 
         await dbInstance.drop_player([ player_id ])
         await dbInstance.get_team([ team_id ])
-            .then( (updatedTeam) => res.status(200).send(updatedTeam))
+            .then( (updatedPlayers) => {
+                console.log(updatedPlayers)
+                res.status(200).send(updatedPlayers)
+            })
             .catch( err => {
                 res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
                 console.log(err)

@@ -38,6 +38,7 @@ app.post('/api/register', auth_controller.register)
 app.post('/api/login', auth_controller.login)
 app.post('/api/addTeam', team_controller.addTeam)
 app.post('/api/addPlayer', team_controller.addPlayer)
+app.post('/api/addPlayerLate', team_controller.addPlayerLate)
 
 app.get('/api/coach_session', auth_controller.coach_session)
 app.get('/api/teams/:coach_id', team_controller.getTeams)
