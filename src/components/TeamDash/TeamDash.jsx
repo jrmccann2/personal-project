@@ -131,19 +131,20 @@ class TeamDash extends Component {
             <p>D. Rebounds: {this.state.teamDReb}</p>
             <p>Turnovers: {this.state.teamTO}</p>
           </section>
-          <div className='NewPlayer'>
-                <form className='player-form'>
-                    <p>
-                    Name:
-                    <input type="text" placeholder="Player Name" name='playername' onChange={this.handleInput} ref={(ref) => this.name_input = ref}/>
-                    </p>
-                    <p>
-                    Position:
-                    <input type="text" placeholder="Position" name='position' onChange={this.handleInput} ref={(ref) => this.pos_input = ref} />
-                    </p>
-                </form>
-                <button onClick={this.addPlayer}>Add Player</button>
-            </div>
+          <Link to='/newGame'><button>New Game</button></Link>
+          <div className='NewPlayer-team-view'>
+            <form className='player-form'>
+              <p>
+                Name:
+                <input type="text" placeholder="Player Name" name='playername' onChange={this.handleInput} ref={(ref) => this.name_input = ref}/>
+              </p>
+              <p>
+                Position:
+                <input type="text" placeholder="Position" name='position' onChange={this.handleInput} ref={(ref) => this.pos_input = ref} />
+              </p>
+            </form>
+            <button onClick={this.addPlayer}>Add Player</button>
+          </div>
           <div className='roster'>
             {players}
           </div>

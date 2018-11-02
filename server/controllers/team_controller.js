@@ -133,5 +133,50 @@ module.exports = {
                 res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
                 console.log(err)
             })
+    },
+
+    createGame: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+        const {opponentName, date} = req.body
+
+        dbInstance.add_game([ opponentName, date ])
+            .then( (game) => {
+                console.log(game)
+                res.status(200).send(game[0])
+            })
+            .catch( err => {
+                res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+                console.log(err)
+            });
+    },
+
+    initStats: (req, res, next) => {
+        const dbInstance = req.app.get('db')
+        const {player_id, game_id} = req.body
+
+        dbInstance.init_stats([ player_id, game_id ])
+            .then( (stat_line_id) => {
+                console.log(stat_line_id)
+                res.status(200).send(stat_line_id)
+            })
+            .catch( err => {
+                res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+                console.log(err)
+            });
+    },
+
+    updateStat: (req, res, next) => {
+        const dbInstance = req.app.get('db')
+        let {name, value, stat_line_id} = req.body
+        console.log(stat_line_id)
+
+        const query = `UPDATE stats SET ${name} = ${value} WHERE stat_line_id = ${stat_line_id}`
+
+        dbInstance.query(query)
+            .then( () => res.sendStatus(200))
+            .catch( err => {
+                res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+                console.log(err)
+            });
     }
 }

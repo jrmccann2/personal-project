@@ -39,6 +39,8 @@ app.post('/api/login', auth_controller.login)
 app.post('/api/addTeam', team_controller.addTeam)
 app.post('/api/addPlayer', team_controller.addPlayer)
 app.post('/api/addPlayerLate', team_controller.addPlayerLate)
+app.post('/api/createGame', team_controller.createGame)
+app.post('/api/initStats', team_controller.initStats)
 
 app.get('/api/coach_session', auth_controller.coach_session)
 app.get('/api/teams/:coach_id', team_controller.getTeams)
@@ -48,6 +50,7 @@ app.get('/api/player/:player_id', team_controller.getPlayer)
 app.get('/api/signout', auth_controller.signout)
 
 app.put('/api/updateEmail', auth_controller.updateEmail)
+app.put('/api/updateStats', team_controller.updateStat)
 
 app.delete('/api/dropPlayer/:player_id/:team_id', team_controller.dropPlayer)
 app.delete('/api/dropTeam/:team_id/:coach_id', team_controller.dropTeam)

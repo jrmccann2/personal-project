@@ -1,12 +1,14 @@
 const initialState = {
     user: {},
     team: {},
+    game: {},
     player_id: 0
 }
 
 // types
 const UPDATE_USER = 'UPDATE_USER';
 const UPDATE_TEAM = 'UPDATE_TEAM';
+const UPDATE_GAME = 'UPDATE_GAME'
 const UPDATE_PLAYER = 'UPDATE_PLAYER';
 
 // action creators
@@ -24,6 +26,13 @@ export function updateTeam(team) {
     }
 }
 
+export function updateGame(game){
+    return {
+        type: UPDATE_GAME,
+        payload: game
+    }
+}
+
 export function updatePlayer(player_id) {
     return {
         type: UPDATE_PLAYER,
@@ -37,6 +46,8 @@ export default function reducer (state=initialState, action){
             return Object.assign({}, state, {user: action.payload});
         case UPDATE_TEAM:
             return Object.assign({}, state, {team: action.payload});
+        case UPDATE_GAME:
+            return Object.assign({}, state, {game: action.payload})
         case UPDATE_PLAYER:
             return Object.assign({}, state, {player_id: action.payload});
         default:
