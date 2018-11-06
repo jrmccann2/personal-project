@@ -1,0 +1,56 @@
+.Dashboard{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: linear-gradient(to top, #2aabe4, #9dc8e4);
+}
+
+.dash-wrapper {
+    width: 75%;
+    color: #33393d;
+    padding-top: 40px;
+}
+
+.dash-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 200px;
+    padding-left: 15px;
+    margin-right: 200px;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: calc(10px + 2vmin);
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+}
+
+.team-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #9dc8e4;
+    margin-left: 200px;
+    padding-left: 15px;
+    margin-right: 200px;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: whitesmoke;
+    border-radius: 25px;
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+}
+
+.team-display:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3;
+}

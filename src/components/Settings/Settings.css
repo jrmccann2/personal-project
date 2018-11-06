@@ -1,0 +1,8 @@
+.Settings{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-image: linear-gradient(to top, #2aabe4, #9dc8e4);
+}

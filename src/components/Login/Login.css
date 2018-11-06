@@ -1,0 +1,21 @@
+.Login-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, #2aabe4, #9dc8e4);
+}
+
+.Login {
+    font-size: calc(10px + 2vmin);
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    color: white;
+}
+
+.Login-img {
+    max-width: 600px;
+    max-height: 238px;
+    width: 60vw;
+  }

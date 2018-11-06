@@ -1,0 +1,58 @@
+.Header-wrapper {
+    background-color: #33393D;
+    /* overflow: hidden; */
+    /* position: fixed;  */
+    top: 0; 
+    width: 100vw;
+    /* height: 50px; */
+    font-size: calc(10px + 2vmin);
+    color: #000000;
+}
+
+.Header-content {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+    background-image: linear-gradient(to right, #33393D, #666b6e);
+    height: 100%;
+}
+
+.Header-user {
+    width: 200px;
+    height: 90%;
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+}
+
+.settings {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+    align-content: stretch;
+    margin-right: 20px;
+}
+
+.logo {
+    width: 35%;
+    height: 85%;
+}
+
+.Header-gear {
+    width: 60px;
+    height: 60px;
+    /* background-color: #33393D; */
+}
+
+.Header-signout {
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 200;
+}
+
+.Header-signout, .Header-gear:hover{
+    cursor: pointer;
+}

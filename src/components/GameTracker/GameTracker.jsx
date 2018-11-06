@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from '../Header/Header';
 import PlayerStats from '../PlayerStats/PlayerStats';
+import './GameTracker.css';
 import axios from 'axios';
 
 class GameTracker extends Component {
@@ -49,12 +50,16 @@ class GameTracker extends Component {
     })
 
     return (
-      <div className="GameTracker">
-        <Header />
-        <h1>GameTracker</h1>
-        <h2>{this.props.game.game_date} vs. {this.props.game.opponent_name}</h2>
-        {players}
-        <button onClick={this.goToTeam}>Submit Button</button>
+      <div className='GTMaster'>
+        <div className="GameTracker">
+          <Header />
+          <h1>GameTracker</h1>
+          <h2>{this.props.game.game_date} vs. {this.props.game.opponent_name}</h2>
+          <div className='PlayerStats'>
+            {players}
+          </div>
+        </div>
+        <button className='submit-btn' onClick={this.goToTeam}>Submit Button</button>
       </div>
     );
   }

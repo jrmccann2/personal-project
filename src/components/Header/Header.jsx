@@ -5,7 +5,8 @@ import {updateUser} from '../../dux/reducer';
 import {connect} from 'react-redux';
 
 import logo from '../../images/logo.png';
-import settingsgear from '../../images/settingsgear.jpg';
+import settingsgear from '../../images/settings-gear.png';
+import './Header.css'
 
 
 class Header extends Component {
@@ -34,13 +35,17 @@ class Header extends Component {
     //   return null
     // } else {
       return (
-        <div className="Header">
-          <div>{username}</div>
-          <Link to='/dashboard'>
-            <img src={logo} alt='logo' />
-          </Link>
-          <div onClick={this.signout}>Sign Out</div>
-          <img src={settingsgear} alt='settings' onClick={ () => this.props.history.push('/settings')}/>
+        <div className="Header-wrapper">
+          <div className='Header-content'>
+            <h2 className='Header-user'>{username}</h2>
+            <Link to='/dashboard'>
+              <img className='logo' src={logo} alt='logo' />
+            </Link>
+            <div className='settings'>
+              <h3 className='Header-signout' onClick={this.signout}>Sign Out</h3>
+              <img className='Header-gear' src={settingsgear} alt='settings' onClick={ () => this.props.history.push('/settings')}/>
+            </div>
+          </div>
         </div>
       );
     // }

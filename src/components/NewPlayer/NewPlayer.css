@@ -1,0 +1,17 @@
+.NewPlayer {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+    align-content: stretch;
+    margin-bottom: 20px;
+}
+
+.player-form{
+    margin-bottom: 20px;
+}
+
+.player-display{
+    margin-top: 20px;
+}

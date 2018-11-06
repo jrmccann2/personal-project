@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {updateUser} from '../../dux/reducer';
 
 import logo from '../../images/logo.png';
+import './Login.css'
 
 class Login extends Component {
   constructor(){
@@ -45,19 +46,20 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <img src={logo} alt="logo"/>
-        <h2>Welcome to And-one Analytics!</h2>
-        <h3>Please Sign-In</h3>
-        <hr/>
-        <p>
+      <div className="Login-container">
+        <img className='Login-img' src={logo} alt="logo"/>
+        <h2 className='Login'>Welcome to And-one Analytics!</h2>
+        <h3 className='Login'>Please Sign-In</h3>
+        <form className='Login form'>
+          <p>
             Username:
-            <input type="text" placeholder="Username" name='username' onChange={this.handleInput} />
-        </p>
-        <p>
+          </p>
+          <input type="text" placeholder="Username" name='username' onChange={this.handleInput} />
+          <p>
             Password:
-            <input type="password" placeholder="Password" name='password' onChange={this.handleInput} />
-        </p>
+          </p>
+          <input type="password" placeholder="Password" name='password' onChange={this.handleInput} />
+        </form>
         <button className='btn' onClick={this.login}>Sign-In</button>
         <p>New user? Register <Link to='/register'>here</Link></p>
       </div>

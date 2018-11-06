@@ -13,4 +13,5 @@ SELECT
 FROM players p
 RIGHT OUTER JOIN stats s ON p.player_id = s.player_id
 LEFT OUTER JOIN games g ON g.game_id = s.game_id
-WHERE p.player_id = $1;
+WHERE p.player_id = $1
+ORDER BY g.game_date ASC;

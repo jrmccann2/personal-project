@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {updatePlayer} from '../../dux/reducer';
 import Header from '../Header/Header';
 import NewPlayer from '../NewPlayer/NewPlayer';
+import './TeamDash.css';
 
 class TeamDash extends Component {
   constructor(){
@@ -27,6 +28,7 @@ class TeamDash extends Component {
     }
     this.handleInput = this.handleInput.bind(this)
     this.addPlayer = this.addPlayer.bind(this)
+    this.calculatePercent = this.calculatePercent.bind(this)
   }
 
   async componentDidMount(){
@@ -39,7 +41,7 @@ class TeamDash extends Component {
       let teamData = resWithTeam.data
       let resWithTeamStats = await axios.get(`/api/teamStats/${this.props.team.team_id}`)
       let teamStats = resWithTeamStats.data
-      console.log(teamData, teamStats)
+      // console.log(teamData, teamStats)
       if(!teamData[0]){
         return null
       } else {
@@ -95,6 +97,15 @@ class TeamDash extends Component {
     this.props.history.push(`/playerDetail/${player_id}`)
   }
 
+  calculatePercent(numerator, denominator){
+    console.log(numerator, denominator)
+    if(!denominator){
+      return `N/A`
+    } else {
+      return `${Math.round((numerator/denominator)*100)}%`
+    }
+  }
+
   render() {
 
     let players = this.state.players.map( (player, i) => {
@@ -121,29 +132,37 @@ class TeamDash extends Component {
       return (
         <div className="TeamDash">
           <Header />
-          <button onClick={ () => this.props.history.push(`/dashboard`)}>Back</button>
-          <h1>{this.state.teamName}</h1>
-          <section className='team-stats'>
-            <p>FT Percentage: {Math.round((this.state.teamFTM / this.state.teamFTA)*100)}%</p>
-            <p>FG Percentage: {Math.round((this.state.teamFGM / this.state.teamFGA)*100)}%</p>
-            <p>O. Rebounds: {this.state.teamOReb}</p>
-            <p>O. Rebounding Percentage: {Math.round((this.state.teamOReb / this.state.teamFGA)*100)}%</p>
-            <p>D. Rebounds: {this.state.teamDReb}</p>
-            <p>Turnovers: {this.state.teamTO}</p>
-          </section>
-          <Link to='/newGame'><button>New Game</button></Link>
-          <div className='NewPlayer-team-view'>
-            <form className='player-form'>
-              <p>
-                Name:
-                <input type="text" placeholder="Player Name" name='playername' onChange={this.handleInput} ref={(ref) => this.name_input = ref}/>
-              </p>
-              <p>
-                Position:
-                <input type="text" placeholder="Position" name='position' onChange={this.handleInput} ref={(ref) => this.pos_input = ref} />
-              </p>
-            </form>
-            <button onClick={this.addPlayer}>Add Player</button>
+          <div className='btn-holder'>
+            <button onClick={ () => this.props.history.push(`/dashboard`)}>Back</button>
+          </div>
+          <div className='team-overview'>
+            <div className='team-name'>
+              <h1>{this.state.teamName}</h1>
+              <div className='team-name-btns'>
+                <Link to='/newGame'><button>New Game</button></Link>
+              </div>
+            </div>
+            <section className='team-stats'>
+              <p>FT Percentage: {this.calculatePercent(this.state.teamFTM, this.state.teamFTA)}</p>
+              <p>FG Percentage: {this.calculatePercent(this.state.teamFGM, this.state.teamFGA)}</p>
+              <p>O. Rebounds: {this.state.teamOReb}</p>
+              <p>O. Rebounding Percentage: {this.calculatePercent(this.state.teamOReb, this.state.teamFGA)}</p>
+              <p>D. Rebounds: {this.state.teamDReb}</p>
+              <p>Turnovers: {this.state.teamTO}</p>
+            </section>
+            <div className='NewPlayer-team-view'>
+              <form className='player-form'>
+                <p>
+                  Name:
+                  <input type="text" placeholder="Player Name" name='playername' onChange={this.handleInput} ref={(ref) => this.name_input = ref}/>
+                </p>
+                <p>
+                  Position:
+                  <input type="text" placeholder="Position" name='position' onChange={this.handleInput} ref={(ref) => this.pos_input = ref} />
+                </p>
+              </form>
+              <button onClick={this.addPlayer}>Add Player</button>
+            </div>
           </div>
           <div className='roster'>
             {players}

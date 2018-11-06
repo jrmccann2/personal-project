@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import './NewPlayer.css';
+
 class NewPlayer extends Component {
     constructor(){
         super();

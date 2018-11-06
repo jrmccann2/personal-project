@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateGame} from '../../dux/reducer';
 import Header from '../Header/Header';
+import './NewGame.css';
 import axios from 'axios';
 
 class NewGame extends Component {
@@ -42,8 +43,7 @@ class NewGame extends Component {
     return (
       <div className="NewGame">
         <Header />
-        New Game
-        <div className='NewGame'>
+        <div className='NewGame-input'>
             <form className='player-form'>
               <p>
                 Opponent Name:

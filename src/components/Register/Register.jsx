@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {updateUser} from '../../dux/reducer';
 
 import logo from '../../images/logo.png'
+import '../Login/Login.css'
 
 class Register extends Component {
   constructor(){
@@ -42,21 +43,23 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="Register">
-        <img src={logo} alt="logo"/>
-        <h3>Register below to start tracking your teams!</h3>
-        <p>
-          Username:
+      <div className="Login-container">
+        <img className='Login-img' src={logo} alt="logo"/>
+        <h3 className='Login'>Register below to start tracking your teams!</h3>
+        <form className='Login form'>
+          <p>
+            Username:
+          </p>
           <input type="text" placeholder="Username" name='username' onChange={this.handleInput} />
-        </p>
-        <p>
-          Email:
+          <p>
+            Email:
+          </p>
           <input type="text" placeholder="Email" name="email" onChange={this.handleInput} />
-        </p>
-        <p>
-          Password:
+          <p>
+            Password:
+          </p>
           <input type="password" placeholder="Password" name='password' onChange={this.handleInput} />
-        </p>
+        </form>
         <button onClick={this.register}>Register</button>
       </div>
     );

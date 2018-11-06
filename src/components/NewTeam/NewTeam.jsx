@@ -4,6 +4,7 @@ import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from '../Header/Header';
 import NewPlayer from '../NewPlayer/NewPlayer';
+import './NewTeam.css';
 
 class NewTeam extends Component {
   constructor(){
@@ -46,7 +47,7 @@ class NewTeam extends Component {
         <div className="NewTeam">
           <Header />
           <h1>
-            Team Name: {this.state.teamName}
+            {this.state.teamName}
           </h1>
           <NewPlayer team_id={this.state.team_id} />
           <Link to='/dashboard'><button>Submit Roster</button></Link>
@@ -56,11 +57,13 @@ class NewTeam extends Component {
       return (
         <div className="NewTeam">
           <Header />
-          <p>
-            Team Name:
-            <input type="text" placeholder="Team Name" name='teamName' onChange={this.handleInput} ref={(ref) => this.input = ref} />
-          </p>
-          <button onClick={this.addTeam}>Add New Team</button>
+          <div className='new-team-name'>
+            <p>
+              Team Name:
+              <input type="text" placeholder="Team Name" name='teamName' onChange={this.handleInput} ref={(ref) => this.input = ref} />
+            </p>
+            <button onClick={this.addTeam}>Add New Team</button>
+          </div>
         </div>
       );
     }

@@ -1,11 +1,28 @@
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+let {EMAIL_ADDRESS, EMAIL_PASSWORD} = process.env
 const saltRounds = 14;
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: `${EMAIL_ADDRESS}`,
+        pass: `${EMAIL_PASSWORD}`
+       }
+   });
 
 module.exports = {
 
     register: ( req, res, next ) => {
         const dbInstance = req.app.get('db');
         const {username, email, password} = req.body;
+        const mailOptions = {
+            from: 'The And-one Team',
+            to: email,
+            subject: 'Welcome to And-one Analytics!',
+            html: `<p style='font-family: Sans-serif; color: #bada55; background-color: grey; font-size: 14px; text-align: center'>Thank you ${username} for registering with us! Your account is now activated, start adding teams and tracking their improvement.</p>`
+          };
         // console.log(username, email, password)
 
         bcrypt.hash(password, saltRounds, function (err, hash){
@@ -14,6 +31,13 @@ module.exports = {
             dbInstance.register_coach([ username, email, hash ])
               .then( (coach) => {
                 req.session.user = coach[0]
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if(err){
+                        console.log(err)
+                    } else {
+                        console.log(info)
+                    }
+                })
                 // console.log(req.session.user);
                 res.status(200).send(coach[0])
               })

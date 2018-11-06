@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateUser} from '../../dux/reducer';
 import Header from '../Header/Header';
+import './Settings.css';
 import axios from 'axios';
 
 class Settings extends Component {
@@ -41,7 +42,6 @@ class Settings extends Component {
     return (
       <div className="Settings">
         <Header />
-        Settings
         <div className='update-email'>
           <h1>
             Email: {this.props.user.email}

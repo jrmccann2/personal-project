@@ -3,7 +3,8 @@ import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
 import {updateTeam} from '../../dux/reducer';
 import {connect} from 'react-redux';
-import Header from '../Header/Header'
+import Header from '../Header/Header';
+import './Dashboard.css';
 
 class Dashboard extends Component {
   constructor(){
@@ -48,7 +49,7 @@ class Dashboard extends Component {
       return (
         <div className='team-display' key={i}>
           <h2 onClick={ () => this.goToTeam(team)}>{team.team_name}</h2>
-        <button onClick={ () => this.dropTeam(team.team_id)}>Drop Team</button>
+          <button onClick={ () => this.dropTeam(team.team_id)}>Drop Team</button>
         </div>
       )
     })
@@ -56,10 +57,13 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
         <Header />
-        Dashboard
-        <h1>My Teams</h1>
-        <Link to='/newTeam'><button>Add Team</button></Link>
-        {teams}
+        <div className='dash-wrapper'>
+          <div className='dash-header'>
+            My Teams
+            <Link to='/newTeam'><button>Add Team</button></Link>
+          </div>
+          {teams}
+        </div>
       </div>
     );
   }
