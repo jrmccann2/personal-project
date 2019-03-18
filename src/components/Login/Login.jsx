@@ -52,11 +52,11 @@ class Login extends Component {
         <h3 className='Login'>Please Sign-In</h3>
         <form className='Login form'>
           <p>
-            Username:
+            Username
           </p>
           <input type="text" placeholder="Username" name='username' onChange={this.handleInput} />
           <p>
-            Password:
+            Password
           </p>
           <input type="password" placeholder="Password" name='password' onChange={this.handleInput} />
         </form>

@@ -48,15 +48,15 @@ class Register extends Component {
         <h3 className='Login'>Register below to start tracking your teams!</h3>
         <form className='Login form'>
           <p>
-            Username:
+            Username
           </p>
           <input type="text" placeholder="Username" name='username' onChange={this.handleInput} />
           <p>
-            Email:
+            Email
           </p>
           <input type="text" placeholder="Email" name="email" onChange={this.handleInput} />
           <p>
-            Password:
+            Password
           </p>
           <input type="password" placeholder="Password" name='password' onChange={this.handleInput} />
         </form>
