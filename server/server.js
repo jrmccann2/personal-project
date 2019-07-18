@@ -22,6 +22,9 @@ app.use(session({
     secret: SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie: {
+        maxAge: 259200000
+    },
     expires: 259200000
 }));
 
