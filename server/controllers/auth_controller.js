@@ -86,7 +86,7 @@ module.exports = {
         if(user) {
             res.status(200).send(user);
         } else {
-            res.status(401).send('Please login')
+            res.sendStatus(401)
         }
     },
 

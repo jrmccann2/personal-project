@@ -20,8 +20,8 @@ let {
 
 app.use(session({
     secret: SECRET,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     expires: 259200000
 }));
 

@@ -19,6 +19,16 @@ class Login extends Component {
     this.login = this.login.bind(this);
   }
 
+  componentDidMount(){
+    axios.get(`/api/coach_session`)
+      .then( res => {
+        if(res.data){
+          this.props.updateUser(res.data)
+          this.props.history.push('/dashboard')
+        }
+      })
+  }
+
   handleInput(event){
     this.setState({[event.target.name]: event.target.value})
   }
@@ -28,13 +38,12 @@ class Login extends Component {
     const {username, password} = this.state
     // console.log(username)
     axios.post('/api/login', {username, password})
-      .then( async () => {
+      .then( res => {
         // console.log(res)
         // console.log(window)
         // if(res.status === 200) {
-        let resWithCoachId = await axios.get('/api/coach_session');
         // console.log(resWithCoachId)
-        this.props.updateUser(resWithCoachId.data)
+        this.props.updateUser(res.data)
         // const {coach_id} = this.props.user
         this.props.history.push('/dashboard')
       })
